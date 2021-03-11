@@ -33,6 +33,23 @@ class ProductController {
       });
   }
 
+  static getOneProduct(req, res, next) {
+    Product.findOne({ where: { id: req.params.id } })
+      .then((data) => {
+        if (!data) {
+          throw {
+            status: 404,
+            message: "Error not found",
+          };
+        } else {
+          res.status(200).json(data);
+        }
+      })
+      .catch((err) => {
+        next(err);
+      });
+  }
+
   static updateProduct(req, res, next) {
     Product.update(
       {
