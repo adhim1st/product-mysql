@@ -8,6 +8,7 @@ List of available endpoints:
 - `POST /users/register`
 - `POST /users/login`
 - `GET /products/`
+- `GET /products/:id`
 - `POST /products/`
 - `PUT /products/:id`
 
@@ -100,6 +101,48 @@ Response:
         "updatedAt": "2021-03-10T05:16:21.000Z"
     }
     ...
+]
+```
+
+### GET /products/:id
+
+Description: Get one products
+
+Request:
+
+- params:
+
+```json
+{
+  "id": "integer"
+}
+```
+
+- headers:
+
+```json
+{
+  "access_token": "string"
+}
+```
+
+Response:
+
+- status: 200
+- body:
+  ​
+
+```json
+[
+  {
+    "id": 1,
+    "title": "Iphone",
+    "img_url": "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone_11-rosette-family-lineup-091019_big.jpg.large.jpg",
+    "quantity": 100,
+    "UserId": 1,
+    "createdAt": "2021-03-10T05:16:21.000Z",
+    "updatedAt": "2021-03-10T05:16:21.000Z"
+  }
 ]
 ```
 
