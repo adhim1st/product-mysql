@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,7 +32,7 @@ function App() {
           <Route path="/create-product">
             <CreateProduct />
           </Route>
-          <Route path="/update-product">
+          <Route path="/update-product/:id">
             <UpdateProduct />
           </Route>
         </Switch>

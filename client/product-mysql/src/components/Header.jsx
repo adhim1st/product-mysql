@@ -1,8 +1,15 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 
 export default function Header() {
   const location = useLocation().pathname;
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    history.push("/login");
+  };
+
   return (
     <nav className="flex justify-between items-center h-16 relative shadow-sm font-poppin text-indigo-700 sm:text-sm md:text-base lg:text-xl">
       <Link to="/home">
@@ -21,12 +28,12 @@ export default function Header() {
             >
               <p>Create Product</p>
             </Link>
-            <Link
-              to="/login"
+            <button
+              onClick={handleLogout}
               className="p-4 hover:bg-indigo-400 hover:text-white transition duration-300 ease-in-out"
             >
               <p>Logout</p>
-            </Link>
+            </button>
           </>
         )}
         {location === "/register" && (

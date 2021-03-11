@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   return (
@@ -14,9 +15,13 @@ const ProductCard = ({ product }) => {
         <p className="font-medium text-gray-400 mt-4">
           Stock left : {product.quantity}
         </p>
-        <button className="self-end mt-4 bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
-          Edit
-        </button>
+        <div className="flex flex-row justify-end">
+          <Link to={{ pathname: `/update-product/${product.id}` }}>
+            <button className=" mt-4 bg-green-500 text-white py-2 px-6 rounded-md hover:bg-green-600 transition duration-300 ease-in-out">
+              Edit
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

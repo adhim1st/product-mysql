@@ -7,6 +7,13 @@ const setProduct = (payload) => {
   };
 };
 
+const setUpdateForm = (payload) => {
+  return {
+    type: "updateForm/setUpdateForm",
+    payload: payload,
+  };
+};
+
 export const postRegister = (payload) => {
   return (dispatch, getState) => {
     axios({
@@ -58,6 +65,25 @@ export const createProduct = (payload) => {
   };
 };
 
+export const updateProduct = (payload) => {
+  return (dispatch, getState) => {
+    axios({
+      method: "PUT",
+      url: `http://localhost:3000/products/${payload.id}`,
+      headers: { access_token: localStorage.getItem("access_token") },
+      data: {
+        title: payload.title,
+        img_url: payload.img_url,
+        quantity: Number(payload.quantity),
+      },
+    })
+      .then(({ data }) => console.log(data))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
 export const fetchProduct = () => {
   return (dispatch, getState) => {
     axios({
@@ -67,6 +93,22 @@ export const fetchProduct = () => {
     })
       .then(({ data }) => {
         dispatch(setProduct(data));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+export const fetchOneProduct = (id) => {
+  return (dispatch, getState) => {
+    axios({
+      method: "GET",
+      url: `http://localhost:3000/products/${id}`,
+      headers: { access_token: localStorage.getItem("access_token") },
+    })
+      .then(({ data }) => {
+        dispatch(setUpdateForm(data));
       })
       .catch((err) => {
         console.log(err);
